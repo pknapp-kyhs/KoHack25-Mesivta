@@ -84,7 +84,7 @@ def uploadUsernames():
 
 def createUsername(usernames):
     """Create a username and check if it's taken already"""
-    username = input("Username: ")
+    username = input("Username: ").strip()
 
     # If it exists, try again
     if username in usernames:
@@ -104,7 +104,7 @@ def get_user_info():
     password = create_password()
     # Stores the date that the account is created with formatting for month/day/year
     dateCreated = datetime.datetime.now().strftime("%m/%d/%Y")
-    user = User(id, firstName, lastName, userName, email, password, dateCreated)
+    user = User(id, firstName, lastName, userName, email, password, dateCreated, True)
     user.handleInfo()
 
 def createAccount():

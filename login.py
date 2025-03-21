@@ -1,7 +1,10 @@
 import os
 import json
+import accountcreation as ac
 
 dataFile = "userInfo.json"
+userData = None
+print(userData)
 
 def load_data():        
     # Check if file exists and create one if it doesn't
@@ -16,17 +19,44 @@ def load_data():
     
 # Check if the username is in the data
 def get_user_data():
+    global userData
     data = load_data()
-    username = input("Enter username...\n").strip()  # Strip any leading/trailing spaces
-    #print(f"Looking for username: {username}")
+
+    username = input("Enter username...\n").strip()
     
     for user in data:
-        #print(f"Checking user: {user}")
-        if username in user.values():
-            #print(f"Found user: {user}")
-            return user
-    
-    print("Username not found")
-    return None
+        if username in user["username"]:
+            # If it is, return all the data
+            userData = user
+            return userData, username
 
-#This code is not finished and will not work
+    return {}, "n/a"
+        
+    # Otherwise create an account 
+
+
+def get_Password(user):
+    user, username = get_user_data()
+    if username in user.values():
+        password = input("Enter account password...\n")
+        if user['password'] == password:
+            print(f"Welcome {user['firstName']}")
+        else:
+            print("Wrong password, try again.")
+            get_Password(user)
+    else:
+        print("User not found.")
+        ac.createAccount()
+        print("\nLog in:")
+        login()
+
+def login():    
+    get_Password(userData)
+
+login()
+
+if userData:
+    for k, v in userData.items():
+        print(f"{k}: {v}")
+else:
+    print("None found")

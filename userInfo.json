@@ -1,56 +1,32 @@
 [
     {
-        "id": "cb580242-7d8d-44a6-948d-690f12644a43",
-        "firstName": "Moshe",
-        "lastName": "Stakrman",
-        "username": "shtark",
-        "email": "mstarkman@moshe247.com",
-        "password": "12345",
-        "dateCreated": "03/18/2025"
-    },
-    {
-        "id": "ac135b26-2d24-41bf-92f1-dde8caec56e3",
-        "firstName": "Mendel",
-        "lastName": "Wellerstein",
-        "username": "MW",
-        "email": "starkman5@gmail.com",
-        "password": "12345",
-        "dateCreated": "03/18/2025"
-    },
-    {
-        "id": "0e482244-0ee0-4800-a33d-9ba85497df54",
-        "firstName": "Eli",
-        "lastName": "Wellerstein",
-        "username": "welly",
-        "email": "welly@gmail.com",
+        "id": "7ae7e925-9e44-4938-961a-059eb6fe0353",
+        "firstName": "Test",
+        "lastName": "Tester",
+        "username": "test1",
+        "email": "test@test.com",
         "password": "1234",
-        "dateCreated": "03/18/2025"
+        "dateCreated": "03/21/2025",
+        "active": true
     },
     {
-        "id": "f7b65368-3bc8-4def-accf-fb90f717c442",
-        "firstName": "test",
-        "lastName": "test",
-        "username": "test",
-        "email": "test",
-        "password": "test",
-        "dateCreated": "03/19/2025"
+        "id": "d1763a36-b38b-4193-b00b-52d44aebef5a",
+        "firstName": "M",
+        "lastName": "M",
+        "username": "mme",
+        "email": "e",
+        "password": "12",
+        "dateCreated": "03/21/2025",
+        "active": true
     },
     {
-        "id": "d56a18a9-ee53-4444-8702-505cc1754584",
-        "firstName": "E",
-        "lastName": "W",
-        "username": "W",
-        "email": "W",
-        "password": "1",
-        "dateCreated": "03/20/2025"
-    },
-    {
-        "id": "4fad4608-b3d8-4647-9718-d9cc5d287028",
-        "firstName": "Mednel",
-        "lastName": "Wellerstein",
-        "username": "mendel123",
-        "email": "mendel13w@gmail.com",
-        "password": "1234",
-        "dateCreated": "03/20/2025"
+        "id": "37257ec6-7b2e-4c27-9ea9-275cb38dcf06",
+        "firstName": "m",
+        "lastName": "m",
+        "username": "mmt",
+        "email": "mme",
+        "password": "12",
+        "dateCreated": "03/21/2025",
+        "active": true
     }
 ]
