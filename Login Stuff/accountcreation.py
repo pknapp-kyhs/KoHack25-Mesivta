@@ -7,7 +7,7 @@ dataFile = "userInfo.json"
 
 # Create a user object to store the user data
 class User:
-    def __init__(self, id, firstName, lastName, username, email, password, dateCreated, active):
+    def __init__(self, id, firstName, lastName, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, active):
         self.id = id
         self.email = email
         self.password = password
@@ -15,6 +15,11 @@ class User:
         self.firstName = firstName
         self.lastName = lastName
         self.dateCreated = dateCreated
+        self.city1 = city1
+        self.city2 = city2
+        self.city3 = city3
+        self.practice = practice
+        self.Kohen = False
         self.active = True
     
     def handleInfo(self):
@@ -27,7 +32,13 @@ class User:
             "email": self.email,
             "password": self.password,
             "dateCreated": self.dateCreated,
+            "city1": self.city1,
+            "city2": self.city2,
+            "city3": self.city3,
+            "practice": self.practice,
+            "Kohen": self.Kohen,
             "active": self.active
+
         }
         
         # Ensure the file exists before reading from it
@@ -93,6 +104,22 @@ def createUsername(usernames):
     else:
         return username
 
+
+def checkOrigin():
+    city1 = input("Please input one city/town you would like to follow: ")
+    city2 = input("Please input another city/town you would like to follow: ")
+    city3 = input("Please input one final city/town you would like to follow: ") 
+    return city1, city2, city3
+def checkPractice():
+    practice = input("Please input your practice (ex: ashekenaz, sephardi, chabad, etc.): ")
+    return practice
+def checkKohen():
+    Kohen = input("Are you a Kohen? (yes or no): ")
+    if Kohen == "yes" or Kohen == "Yes":
+        Kohen = True
+    else:
+        Kohen = False
+    return Kohen
 # Ask for user info
 def get_user_info():
     # Creates a unique ID for each user
@@ -102,12 +129,20 @@ def get_user_info():
     userName = createUsername(uploadUsernames())
     email = input("Email: ")
     password = create_password()
+    city1, city2, city3 = checkOrigin()
+
+    practice = checkPractice()
+    Kohen = checkKohen()
+
     # Stores the date that the account is created with formatting for month/day/year
     dateCreated = datetime.datetime.now().strftime("%m/%d/%Y")
-    user = User(id, firstName, lastName, userName, email, password, dateCreated, True)
+    user = User(id, firstName, lastName, userName, email, password, dateCreated, city1, city2, city3, practice, Kohen, True)
     user.handleInfo()
+    return userName
 
 def createAccount():
     # Welcome the user to the account creation page
     print("Please input the following information to create an account.")
     get_user_info()
+    print("Account created successfully.")
+createAccount()

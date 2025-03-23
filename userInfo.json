@@ -1,32 +1,27 @@
 [
     {
-        "id": "7ae7e925-9e44-4938-961a-059eb6fe0353",
-        "firstName": "Test",
-        "lastName": "Tester",
-        "username": "test1",
-        "email": "test@test.com",
-        "password": "1234",
-        "dateCreated": "03/21/2025",
+        "id": "1383c97c-eff5-4da6-9098-3950c5a0d362",
+        "firstName": "a",
+        "lastName": "a",
+        "username": "a",
+        "email": "a",
+        "password": "a",
+        "dateCreated": "03/23/2025",
         "active": true
     },
     {
-        "id": "d1763a36-b38b-4193-b00b-52d44aebef5a",
-        "firstName": "M",
-        "lastName": "M",
-        "username": "mme",
-        "email": "e",
-        "password": "12",
-        "dateCreated": "03/21/2025",
-        "active": true
-    },
-    {
-        "id": "37257ec6-7b2e-4c27-9ea9-275cb38dcf06",
-        "firstName": "m",
-        "lastName": "m",
-        "username": "mmt",
-        "email": "mme",
-        "password": "12",
-        "dateCreated": "03/21/2025",
+        "id": "db3f74fa-7d2e-4568-aba3-3f1ed7c67812",
+        "firstName": "a",
+        "lastName": "a",
+        "username": "b",
+        "email": "b",
+        "password": "b",
+        "dateCreated": "03/23/2025",
+        "city1": "b",
+        "city2": "b",
+        "city3": "b",
+        "practice": "b",
+        "Kohen": false,
         "active": true
     }
 ]
