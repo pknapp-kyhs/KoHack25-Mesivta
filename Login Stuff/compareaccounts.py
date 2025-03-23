@@ -8,8 +8,10 @@ with open(dataFile, "r") as f:
 
 
 for account in data:
-    username = account.get("username")
-    if username in usernames:
+    city1 = account.get("city1")
+    city2 = account.get("city2")
+    city3 = account.get("city3")
+    if city1 =  in usernames:
         duplicates.append(username)
     else:
         usernames.add(username)

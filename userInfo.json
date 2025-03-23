@@ -23,5 +23,35 @@
         "practice": "b",
         "Kohen": false,
         "active": true
+    },
+    {
+        "id": "e79b33bf-f04d-4aae-8b80-6ff48861b632",
+        "firstName": "max",
+        "lastName": "frager",
+        "username": "maxf",
+        "email": "fragermax@gmail.com",
+        "password": "maxf",
+        "dateCreated": "03/23/2025",
+        "city1": "berlin",
+        "city2": "frankfurt",
+        "city3": "hamburg",
+        "practice": "ashkenaz",
+        "Kohen": false,
+        "active": true
+    },
+    {
+        "id": "794050e3-3507-4560-829a-ec02d8066fd9",
+        "firstName": "sarel",
+        "lastName": "'daniel",
+        "username": "sareld",
+        "email": "sareldaniel@gmail.com",
+        "password": "std",
+        "dateCreated": "03/23/2025",
+        "city1": "krakow",
+        "city2": "lvov",
+        "city3": "berlin",
+        "practice": "chasid",
+        "Kohen": false,
+        "active": true
     }
 ]
