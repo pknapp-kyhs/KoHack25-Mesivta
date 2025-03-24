@@ -1,7 +1,7 @@
 [
     {
         "id": "da8f09d2-264f-4f12-9cdf-3cc8cf202aa2",
-        "title": "",
+        "title": "This is a Torah",
         "message": "",
         "city": "new york",
         "image": null,
@@ -9,7 +9,7 @@
     },
     {
         "id": "7645f998-b381-4b05-a6c6-2631c1419940",
-        "title": "Post",
+        "title": "This is a mezuzah",
         "message": "noteds",
         "city": "new york",
         "image": "test2.png",
@@ -17,7 +17,7 @@
     },
     {
         "id": "45685a08-ca66-4c35-adb1-1eaf5a7a1628",
-        "title": "Title",
+        "title": "This is a Menorah",
         "message": "Notes",
         "city": "vilna",
         "image": null,
@@ -25,7 +25,7 @@
     },
     {
         "id": "38b9afc7-5475-4504-a32f-6bf719974b91",
-        "title": "berlin",
+        "title": "This is from berlin",
         "message": "Notes",
         "city": "berlin",
         "image": null,
