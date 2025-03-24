@@ -3,6 +3,7 @@ import uuid
 import os
 
 class Post:
+    """Create a 'Post' class"""
     def __init__(self, id, title, msg, loc, image, audio):
         self.id = id
         self.title = title
@@ -12,6 +13,7 @@ class Post:
         self.audio = audio
 
     def send_to_file(self):
+        """Send the post to a json file"""
         post = {
             "id": self.id,
             "title": self.title,
@@ -31,7 +33,8 @@ class Post:
 
 
 def create_post():
-    #Get all the info for the post
+    """Get all the post info from the user"""
+
     id = str(uuid.uuid4())
     title = input("Enter the title of the post.\n")
     msg = input("Add some notes about it.\n")
@@ -39,11 +42,13 @@ def create_post():
     image = upload_image()
     audio = upload_audio()
     
-    #This is the post, it stores all the details in a dict
+    # Create an instance of the Post with all of the user
     post = Post(id, title, msg, loc, image, audio)
     return post
 
 def upload_image():
+    """Handle the image upload"""
+    
     file_name = input("Enter the link to the file\n")
     # Check if it's a valid image file and if it exists
     if file_name.lower().endswith(('.jpeg', '.png', '.jpg')) and os.path.exists(file_name):
