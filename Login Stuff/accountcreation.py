@@ -10,13 +10,11 @@ api_key = "PfT1mGwaFpS+Dv/8fk1I3A==NefKEwmCGJUHKPb7"
 
 # Create a user object to store the user data
 class User:
-    def __init__(self, id, firstName, lastName, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance):
+    def __init__(self, id, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance):
         self.id = id
         self.email = email
         self.password = password
         self.username = username
-        self.firstName = firstName
-        self.lastName = lastName
         self.dateCreated = dateCreated
         self.city1 = city1
         self.city2 = city2
@@ -32,8 +30,6 @@ class User:
         """Create a dictionary to store user info and append it to a JSON file"""
         userInfo = {
             "id": self.id,
-            "firstName": self.firstName,
-            "lastName": self.lastName,
             "username": self.username,
             "email": self.email,
             "password": self.password,
@@ -48,11 +44,8 @@ class User:
             "relevance3": self.city3_relevance
         }
         
-        # Ensure the file exists before reading from it
-        if not os.path.exists(dataFile):
-            with open(dataFile, "w") as f:
-                json.dump([], f, indent=4)
-        
+        ensure_file_exists(dataFile)
+
         # Read the existing data from the JSON file
         with open(dataFile, "r") as f:
             data = json.load(f)
@@ -64,19 +57,13 @@ class User:
         with open(dataFile, "w") as f:
             json.dump(data, f, indent=4)
 
-def get_first_name():
-    firstName = input("First Name: ").strip()
-    if firstName == "":
-        print("First Name cannot be blank. Please try again.")
-        return get_first_name()
-    return firstName
-
-def get_last_name():
-    lastName = input("Last Name: ").strip()
-    if lastName == "":
-        print("Last Name cannot be blank. Please try again.")
-        return get_last_name()
-    return lastName
+def ensure_file_exists(file):
+    """Make sure a file exists"""
+    # Make sure the file exists before reading from it
+    # If not create a new one
+    if not os.path.exists(file):
+        with open(dataFile, "w") as f:
+            json.dump([], f, indent=4)
 
 def get_email(): 
     email = input("Email: ").strip()
@@ -101,12 +88,10 @@ def create_password():
 def uploadUsernames():
     """Make a list of all the usernames to check if the input username is taken"""
     usernames = []
-    # Ensure the file exists before reading from it
-    if not os.path.exists(dataFile):
-        with open(dataFile, "w") as f:
-            json.dump([], f, indent=4)
     
-    # Make a list of all of the usernames
+    ensure_file_exists(dataFile)
+
+    # load all the data in the file, and add the existing usernames to the list
     with open(dataFile, "r") as f:
         data = json.load(f)
         for user in data:
@@ -116,6 +101,7 @@ def uploadUsernames():
 
 def createUsername(usernames):
     """Create a username and check if it's taken already"""
+    
     username = input("Username: ").strip()
     if username == "":
         print("Username cannot be blank. Please try again.")
@@ -140,48 +126,40 @@ def load_cities_from_api(city_name):
 def check_city_exists(city_name):
     """Check if a city exists using the API"""
     city_data = load_cities_from_api(city_name)
-    if city_data:
-        for city in city_data:
-            if city['name'].lower() == city_name.lower():
-                return True
+    
+    if not city_data:
+        return False
+
+    for city in city_data:
+        if city['name'].lower() == city_name.lower():
+            return True
+
     return False
 
+
+def get_valid_city(prompt_text):
+    """Prompt the user for a valid city and validate it"""
+    while True:
+        city = input(prompt_text).strip().lower()
+        
+        if not city:
+            print("City cannot be blank. Please try again.")
+            continue
+        
+        if not check_city_exists(city):
+            print("City not found. Please try again.")
+            continue
+
+        return city
+
+
 def checkOrigin():
-    while True:
-        city1 = input("Please input one city/town you would like to follow: ").strip().lower()
-        if city1 == "":
-            print("City cannot be blank. Please try again.")
-            continue
-        if not check_city_exists(city1):
-            print("City not found. Please try again.")
-            continue
-        else:
-            print("Great Choice!")
-        break
-
-    while True:
-        city2 = input("Please input another city/town you would like to follow: ").strip().lower()
-        if city2 == "":
-            print("City cannot be blank. Please try again.")
-            continue
-        if not check_city_exists(city2):
-            print("City not found. Please try again.")
-            continue
-        else:
-            print("Awesome!")
-        break
-
-    while True:
-        city3 = input("Please input one final city/town you would like to follow: ").strip().lower()
-        if city3 == "":
-            print("City cannot be blank. Please try again.")
-            continue
-        if not check_city_exists(city3):
-            continue
-        else:
-            print("Fantastic choice!")
-        break
-
+    """Prompt the user to input three valid cities"""
+    city1 = get_valid_city("Please input one city/town you would like to follow: ")
+    city2 = get_valid_city("Please input another city/town you would like to follow: ")
+    city3 = get_valid_city("Please input one final city/town you would like to follow: ")
+    
+    print("All cities are valid.")
     return city1, city2, city3
 
 def checkMinhag():
@@ -195,7 +173,7 @@ def checkMinhag():
     return practice
 
 def checkKohen():
-    Kohen = input("Are you a Kohen, Yisrael or Levi? (K, Y or L): ")
+    Kohen = input("Are you a Kohen, Levi or Yisrael? (K, L or Y): ")
     if Kohen.lower() == "k":
         Kohen = True
     else:
@@ -206,9 +184,7 @@ def checkKohen():
 # Ask for user info
 def get_user_info():
     # Creates a unique ID for each user
-    id = str(uuid.uuid4())
-    firstName = get_first_name()
-    lastName = get_last_name()   
+    id = str(uuid.uuid4())  
     userName = createUsername(uploadUsernames())
     email = get_email()
     password = create_password()
@@ -222,7 +198,7 @@ def get_user_info():
 
     # Stores the date that the account is created with formatting for month/day/year
     dateCreated = datetime.datetime.now().strftime("%m/%d/%Y")
-    user = User(id, firstName, lastName, userName, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance)
+    user = User(id, userName, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance)
     user.handleInfo()
     return userName
 
