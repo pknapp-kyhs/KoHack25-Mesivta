@@ -2,6 +2,7 @@ import json
 import uuid
 import os
 import accountcreation as AC
+
 class Post:
     """Create a 'Post' class"""
     def __init__(self, id, title, msg, loc, image, audio):
@@ -14,6 +15,7 @@ class Post:
 
     def send_to_file(self):
         """Send the post to a json file"""
+        
         post = {
             "id": self.id,
             "title": self.title,
@@ -83,7 +85,7 @@ def upload_image():
 
 def upload_audio():
     """Handle the audio upload"""
-    prompt = ask_user("Do you want to upload a niggun")
+    prompt = ask_user("Do you want to upload a niggun?\n")
 
     if prompt:
         file_name = input("Enter name of audio file. (.MP3 ONLY!)\n")
@@ -102,3 +104,5 @@ def main():
     print("Create a post\n")
     post = create_post()
     post.send_to_file()
+
+main()
