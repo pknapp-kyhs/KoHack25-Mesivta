@@ -53,5 +53,20 @@
         "practice": "chasid",
         "Kohen": false,
         "active": true
+    },
+    {
+        "id": "8e34ad9c-4d12-4aaa-a8a9-a8d6aa6d2541",
+        "firstName": "Mendel",
+        "lastName": "Wellerstein",
+        "username": "mendel12",
+        "email": "mendel123",
+        "password": "1234",
+        "dateCreated": "03/23/2025",
+        "city1": "minsk",
+        "city2": "pinsk",
+        "city3": "chelm",
+        "practice": "chabad",
+        "Kohen": false,
+        "active": true
     }
 ]
