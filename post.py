@@ -55,8 +55,9 @@ def upload_image():
         # Return the name of the file
         return file_name
     # Otherwise...
-    print("File not found")
-    return upload_image()
+    else:
+        print("File not found")
+        return upload_image()
 
 def upload_audio():
     file_name = input("Enter name of audio file. (.MP3 ONLY!)\n")
@@ -64,9 +65,10 @@ def upload_audio():
     if file_name.endswith(".mp3") and os.path.exists(file_name):
         # Return the name of the file
         return file_name
-    
-    print("File not found")
-    return upload_audio()
+    # Otherwise...   
+    else:
+        print("File not found")
+        return upload_audio()
 
 post = create_post()
 post.send_to_file()
