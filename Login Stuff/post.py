@@ -31,7 +31,7 @@ class Post:
             posts.append(post)
 
         with open("posts.json", "w") as f:
-            json.dump(posts, f, indent= 4)
+            json.dump(posts, f, indent=4)
 
 def ask_user(prompt):
     """Ask if user wants soemthing, returns True or False"""
@@ -51,7 +51,7 @@ def get_location(loc):
     else:
         print("That city doesn't exist. Try again.")
         return create_post()
-
+    
 def create_post():
     """Get all the post info from the user"""
     loc = get_location( input("What city is it from?\n"))
@@ -64,8 +64,9 @@ def create_post():
     #image = upload_image()
     # audio = upload_audio()
     # Create an instance of the Post with all of the user
+    print("Create another post??")
     post = Post(id, title, msg, loc, image, audio)
-    return post
+    return post 
 
 def upload_image():
     """Handle the image upload"""
@@ -82,12 +83,13 @@ def upload_image():
             print("File not found")
             return upload_image()
     else:
-        return False
+        return None
 
 def upload_audio():
     """Handle the audio upload"""
     prompt = ask_user("Do you want to upload a niggun?\n")
-
+    if prompt == "no":
+        return None
     if prompt:
         file_name = input("Enter name of audio file. (.MP3 ONLY!)\n")
         # Check if it's a valid audio file and if it exists
@@ -99,9 +101,11 @@ def upload_audio():
             print("File not found")
             return upload_audio()
     else:
-        return False
+        return None
 
 def main():
     print("Create a post\n")
     post = create_post()
     post.send_to_file()
+
+main()

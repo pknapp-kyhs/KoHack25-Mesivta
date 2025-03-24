@@ -76,18 +76,18 @@ def create_password():
     """Create a password with confirmation"""
     password = input("Password: ").strip()
     if len(password) < 8:
-        if password == "":
-            print("Password cannot be blank. Please try again.")
-            return create_password()
-        confirmPassword = input("Confirm Password: ").strip()
-        if password == confirmPassword:
-            return password
-        else:
-            print("Passwords do not match. Please try again.")
-            return create_password()
-    else:
-        print("Password must be at least 8")
+        print("Password can't be less than 8 digits")
         return create_password()
+    if password == "":
+        print("Password cannot be blank. Please try again.")
+        return create_password()
+    confirmPassword = input("Confirm Password: ").strip()
+    if password == confirmPassword:
+        return password
+    else:
+        print("Passwords do not match. Please try again.")
+        return create_password()
+
 
 def uploadUsernames():
     """Make a list of all the usernames to check if the input username is taken"""
@@ -202,7 +202,7 @@ def checkKohen():
 # Ask for user info
 def get_user_info():
     # Creates a unique ID for each user
-    #
+    
     id = str(uuid.uuid4())  
     userName = createUsername(uploadUsernames())
     email = get_email()
@@ -225,3 +225,4 @@ def createAccount():
     print("Please input the following information to create an account.")
     get_user_info()
     print("Account created successfully.")
+createAccount()

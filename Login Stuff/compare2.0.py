@@ -29,4 +29,4 @@ def main():
     matching_posts = compare_posts_accounts(dataFile, postsFile)
     for username, city, post_id in matching_posts:
         print(f"Hello {username}, we have found a match for {city} that you are following. The title of the post is is {post_id}\n")
-
+main()
