@@ -4,12 +4,14 @@ import os
 import json
 import requests
 
-dataFile = "userInfo.json"
+dataFile = "Login Stuff/data/userInfo.json"
 api_url = "https://api.api-ninjas.com/v1/geocoding"
 api_key = "PfT1mGwaFpS+Dv/8fk1I3A==NefKEwmCGJUHKPb7"
 
-# Create a user object to store the user data
+
 class User:
+    """Create a user object to store the user data"""
+
     def __init__(self, id, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance):
         self.id = id
         self.email = email
@@ -34,23 +36,21 @@ class User:
             "email": self.email,
             "password": self.password,
             "dateCreated": self.dateCreated,
-            "city1": self.city1,
-            "city2": self.city2,
-            "city3": self.city3,
+            "city": [self.city1, self.city2, self.city3],
             "practice": self.practice,
             "Kohen": self.Kohen,
             "relevance1": self.city1_relevance,
             "relevance2": self.city2_relevance,
             "relevance3": self.city3_relevance
         }
-        
+
         ensure_file_exists(dataFile)
 
         # Read the existing data from the JSON file
         with open(dataFile, "r") as f:
             data = json.load(f)
         
-        # Append the new data to the existing data
+        # Append the new user info to the existing data
         data.append(userInfo)
         
         # Write the updated data back to the JSON file with indentation
@@ -75,14 +75,18 @@ def get_email():
 def create_password():
     """Create a password with confirmation"""
     password = input("Password: ").strip()
-    if password == "":
-        print("Password cannot be blank. Please try again.")
-        return create_password()
-    confirmPassword = input("Confirm Password: ").strip()
-    if password == confirmPassword:
-        return password
+    if len(password) < 8:
+        if password == "":
+            print("Password cannot be blank. Please try again.")
+            return create_password()
+        confirmPassword = input("Confirm Password: ").strip()
+        if password == confirmPassword:
+            return password
+        else:
+            print("Passwords do not match. Please try again.")
+            return create_password()
     else:
-        print("Passwords do not match. Please try again.")
+        print("Password must be at least 8")
         return create_password()
 
 def uploadUsernames():
@@ -156,7 +160,17 @@ def get_valid_city(prompt_text):
 def checkOrigin():
     """Prompt the user to input three valid cities"""
     city1 = get_valid_city("Please input one city/town you would like to follow: ")
+    if city1 == "":
+        print("City cannot be blank. Please try again.")
+        return checkOrigin()
+    if check_city_exists(city1):
+        print("Awesome!" )
     city2 = get_valid_city("Please input another city/town you would like to follow: ")
+    if city2 == "": 
+        print("City cannot be blank. Please try again.")
+        return checkOrigin()
+    if check_city_exists(city2):
+        print("Great!")
     city3 = get_valid_city("Please input one final city/town you would like to follow: ")
     
     print("All cities are valid.")
@@ -174,8 +188,12 @@ def checkMinhag():
 
 def checkKohen():
     Kohen = input("Are you a Kohen, Levi or Yisrael? (K, L or Y): ")
+    if Kohen.lower() not in ["k", "l", "y"]:
+        print("Invalid input. Please try again.")
+        return checkKohen()
     if Kohen.lower() == "k":
         Kohen = True
+  
     else:
         Kohen = False
     return Kohen
@@ -184,6 +202,7 @@ def checkKohen():
 # Ask for user info
 def get_user_info():
     # Creates a unique ID for each user
+    #
     id = str(uuid.uuid4())  
     userName = createUsername(uploadUsernames())
     email = get_email()
@@ -194,7 +213,6 @@ def get_user_info():
     city1_relevance = 0
     city2_relevance = 0
     city3_relevance = 0
- 
 
     # Stores the date that the account is created with formatting for month/day/year
     dateCreated = datetime.datetime.now().strftime("%m/%d/%Y")

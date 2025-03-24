@@ -39,7 +39,7 @@ def ask_user(prompt):
     match question:
         case "yes":
             return True
-        case 'no':
+        case _:
             return False
 
 
@@ -57,10 +57,11 @@ def create_post():
     loc = get_location( input("What city is it from?\n"))
     id = str(uuid.uuid4())
     title = input("Enter the title of the post.\n")
+    
     msg = input("Add some notes about it.\n")
     image = upload_image()
     audio = upload_audio()
-   # image = upload_image()
+    #image = upload_image()
     # audio = upload_audio()
     # Create an instance of the Post with all of the user
     post = Post(id, title, msg, loc, image, audio)
@@ -81,7 +82,7 @@ def upload_image():
             print("File not found")
             return upload_image()
     else:
-        return None
+        return False
 
 def upload_audio():
     """Handle the audio upload"""
@@ -98,11 +99,9 @@ def upload_audio():
             print("File not found")
             return upload_audio()
     else:
-        return None
+        return False
 
 def main():
     print("Create a post\n")
     post = create_post()
     post.send_to_file()
-
-main()
