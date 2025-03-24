@@ -10,7 +10,7 @@ api_key = "PfT1mGwaFpS+Dv/8fk1I3A==NefKEwmCGJUHKPb7"
 
 # Create a user object to store the user data
 class User:
-    def __init__(self, id, firstName, lastName, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, relevance):
+    def __init__(self, id, firstName, lastName, username, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance):
         self.id = id
         self.email = email
         self.password = password
@@ -23,7 +23,10 @@ class User:
         self.city3 = city3
         self.practice = practice
         self.Kohen = Kohen
-        self.relevance = relevance
+        self.city1_relevance = city1_relevance
+        self.city2_relevance = city2_relevance
+        self.city3_relevance = city3_relevance
+
     
     def handleInfo(self):
         """Create a dictionary to store user info and append it to a JSON file"""
@@ -40,7 +43,9 @@ class User:
             "city3": self.city3,
             "practice": self.practice,
             "Kohen": self.Kohen,
-            "relevance": self.relevance
+            "relevance1": self.city1_relevance,
+            "relevance2": self.city2_relevance,
+            "relevance3": self.city3_relevance
         }
         
         # Ensure the file exists before reading from it
@@ -151,7 +156,7 @@ def checkOrigin():
             print("City not found. Please try again.")
             continue
         else:
-            print("All cities are valid.")
+            print("Great Choice!")
         break
 
     while True:
@@ -163,7 +168,7 @@ def checkOrigin():
             print("City not found. Please try again.")
             continue
         else:
-            print("All cities are valid.")
+            print("Awesome!")
         break
 
     while True:
@@ -172,34 +177,31 @@ def checkOrigin():
             print("City cannot be blank. Please try again.")
             continue
         if not check_city_exists(city3):
-            print("City not found. Please try again.")
             continue
+        else:
+            print("Fantastic choice!")
         break
 
     return city1, city2, city3
 
-def checkPractice():
-    practice = input("Please input your practice (ex: ashekenaz, sephardi, chabad, etc.): ").strip()
+def checkMinhag():
+    practice = input("Please input a letter for your Minhag (ex: A (Ashekenaz), S (Sephardi), C (Chabad)): ").strip()
     if practice == "":
         print("Practice cannot be blank. Please try again.")
-        return checkPractice()  
+        return checkMinhag()  
+    if practice.lower() not in ["a", "s", "c"]:
+        print("Invalid input. Please try again.")
+        return checkMinhag()
     return practice
 
 def checkKohen():
-    Kohen = input("Are you a Kohen? (yes or no): ")
-    if Kohen.lower() == "yes":
+    Kohen = input("Are you a Kohen, Yisrael or Levi? (K, Y or L): ")
+    if Kohen.lower() == "k":
         Kohen = True
     else:
         Kohen = False
     return Kohen
 
-def checkRelevance():
-    while True:
-        relevance = input("Please input your relevance score (1-10): ").strip()
-        if relevance.isdigit() and 1 <= int(relevance) <= 10:
-            return int(relevance)
-        else:
-            print("Relevance score must be a number between 1 and 10. Please try again.")
 
 # Ask for user info
 def get_user_info():
@@ -211,13 +213,16 @@ def get_user_info():
     email = get_email()
     password = create_password()
     city1, city2, city3 = checkOrigin()
-    practice = checkPractice()
+    practice = checkMinhag()
     Kohen = checkKohen()
-    relevance = checkRelevance()
+    city1_relevance = 0
+    city2_relevance = 0
+    city3_relevance = 0
+ 
 
     # Stores the date that the account is created with formatting for month/day/year
     dateCreated = datetime.datetime.now().strftime("%m/%d/%Y")
-    user = User(id, firstName, lastName, userName, email, password, dateCreated, city1, city2, city3, practice, Kohen, relevance)
+    user = User(id, firstName, lastName, userName, email, password, dateCreated, city1, city2, city3, practice, Kohen, city1_relevance, city2_relevance, city3_relevance)
     user.handleInfo()
     return userName
 
