@@ -1,10 +1,26 @@
 [
     {
-        "id": "eb6f6d9a-b5aa-4e7c-a9bc-9490b1ef8596",
-        "title": "this is a post",
-        "message": "this is a post",
-        "location": "somewhere",
+        "id": "da8f09d2-264f-4f12-9cdf-3cc8cf202aa2",
+        "title": "fjsj",
+        "message": "fsdfs",
+        "location": "new york",
+        "image": 0,
+        "audio file": 0
+    },
+    {
+        "id": "7645f998-b381-4b05-a6c6-2631c1419940",
+        "title": "Post",
+        "message": "noteds",
+        "location": "new york",
         "image": "test2.png",
+        "audio file": "test.mp3"
+    },
+    {
+        "id": "45685a08-ca66-4c35-adb1-1eaf5a7a1628",
+        "title": "Title",
+        "message": "Notes",
+        "location": "vilna",
+        "image": null,
         "audio file": "test.mp3"
     }
 ]

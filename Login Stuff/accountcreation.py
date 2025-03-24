@@ -207,5 +207,3 @@ def createAccount():
     print("Please input the following information to create an account.")
     get_user_info()
     print("Account created successfully.")
-
-createAccount()

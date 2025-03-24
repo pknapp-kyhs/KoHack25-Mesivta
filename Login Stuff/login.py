@@ -40,7 +40,7 @@ def get_Password(user):
     if username in user.values():
         password = input("Enter account password...\n")
         if user['password'] == password:
-            print(f"Welcome {user['firstName']}")
+            print(f"Welcome {user['username']}")
         else:
             print("Wrong password, try again.")
             get_Password(user)
@@ -52,11 +52,3 @@ def get_Password(user):
 
 def login():    
     get_Password(userData)
-
-login()
-
-if userData:
-    for k, v in userData.items():
-        print(f"{k}: {v}")
-else:
-    print("None found")

@@ -116,5 +116,50 @@
         "relevance1": 0,
         "relevance2": 0,
         "relevance3": 0
+    },
+    {
+        "id": "09543d5f-0ebd-4657-95dd-575993c7bc36",
+        "username": "me",
+        "email": "mendel",
+        "password": "12",
+        "dateCreated": "03/24/2025",
+        "city1": "berlin",
+        "city2": "new york",
+        "city3": "philadelphia",
+        "practice": "c",
+        "Kohen": false,
+        "relevance1": 0,
+        "relevance2": 0,
+        "relevance3": 0
+    },
+    {
+        "id": "e6280232-7d42-4d91-a179-f3214c956a93",
+        "username": "Mendel123",
+        "email": "mendel@gmail.com",
+        "password": "1234",
+        "dateCreated": "03/24/2025",
+        "city1": "new york",
+        "city2": "philadelphia",
+        "city3": "elizabeth",
+        "practice": "c",
+        "Kohen": false,
+        "relevance1": 0,
+        "relevance2": 0,
+        "relevance3": 0
+    },
+    {
+        "id": "d43ae0a2-9c5d-4c92-9ca8-84def9ed72bb",
+        "username": "Yitzy",
+        "email": "yduy",
+        "password": "1",
+        "dateCreated": "03/24/2025",
+        "city1": "new york",
+        "city2": "elizabeth",
+        "city3": "philadelphia",
+        "practice": "a",
+        "Kohen": false,
+        "relevance1": 0,
+        "relevance2": 0,
+        "relevance3": 0
     }
 ]
