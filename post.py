@@ -49,7 +49,7 @@ def create_post():
 def upload_image():
     """Handle the image upload"""
     
-    file_name = input("Enter the link to the file\n")
+    file_name = input("Enter the link to the file (.jpeg, .png, or .jpg)\n")
     # Check if it's a valid image file and if it exists
     if file_name.lower().endswith(('.jpeg', '.png', '.jpg')) and os.path.exists(file_name):
         # Return the name of the file
